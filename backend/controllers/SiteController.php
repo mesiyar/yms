@@ -11,7 +11,7 @@ use common\models\LoginForm;
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BasicController
 {
     /**
      * @inheritdoc
@@ -23,7 +23,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error', 'forget'],
+                        'actions' => ['login', 'error', 'forget', 'setting'],
                         'allow' => true,
                     ],
                     [
@@ -109,5 +109,10 @@ class SiteController extends Controller
         return $this->render('reset',[
             'model' => $model
         ]);
+    }
+
+    public function actionSetting()
+    {
+        return $this->render('setting');
     }
 }

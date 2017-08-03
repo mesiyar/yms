@@ -53,6 +53,7 @@ return [
             'class' => 'yii\rbac\DbManager',
         ],
 
+
     ],
     'language' => 'zh-CN',
     'params' => $params,

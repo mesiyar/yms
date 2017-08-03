@@ -32,11 +32,13 @@ if (Yii::$app->controller->action->id === 'login') {
     <head>
         <meta charset="<?= Yii::$app->charset ?>"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="<?= Yii::$app->session->get('system')['keywords']?>">
+        <meta name="description" content="<?= Yii::$app->session->get('system')['desc']?>">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition skin-blue sidebar-mini">
+    <body class="hold-transition <?= Yii::$app->session->get('system')['theme']?> sidebar-mini" id="imbody">
     <?php $this->beginBody() ?>
     <div class="wrapper">
 
@@ -63,3 +65,4 @@ if (Yii::$app->controller->action->id === 'login') {
     </html>
     <?php $this->endPage() ?>
 <?php } ?>
+
