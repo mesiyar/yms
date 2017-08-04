@@ -7,35 +7,84 @@
  */
 use yii\helpers\Html;
 use yii\grid\GridView;
-
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\DepartmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Departments';
+$this->title = '部门列表';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="department-index">
+<div class="department-index for_content">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Department', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('添加部门', '#', [
+            'class' => 'btn btn-success',
+            'id' => 'create',
+            'data-toggle' => 'modal',
+            'data-target' => '#create-department'
+            ]) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            [
+                'class' => 'yii\grid\CheckboxColumn',
+                'name' => 'id',
+            ],
 
             'id',
             'name',
-            'pid',
-            'createTime',
-            'status',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'attribute' => 'dName.name',
+                'label' => '上级部门',
+            ],
+            [
+                'attribute' => 'createTime',
+               // 'filter' => \kartik\datetime\DateTimePicker::widget([])
+            ],
+            [
+                'attribute' => 'status',
+                'format' => 'raw',
+                'value' => function($model) {
+                    return $model->status ? Html::button('正常',['class' => 'btn btn-success btn-sm']) : Html::button('禁用',['class' => 'btn btn-danger btn-sm']);
+                },
+                'filter' => [
+                    0 => '禁用',
+                    1 => '正常'
+                ]
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header' => '操作',
+                'template' => '{update}  {delete}'
+            ],
         ],
     ]); ?>
 </div>
+
+<?php
+\yii\bootstrap\Modal::begin([
+    'id' => 'create-department',
+    'header' => '<h4 align="center">添加部门</h4>',
+    'footer' => '<a href="#" class="btn btn-default" data-dismiss="modal">关闭</a>',
+    'headerOptions' => [
+        'style' => 'background-color:#46be8a;color:#fff'
+    ],
+]);
+\yii\bootstrap\Modal::end();
+
+$requestUrl = \yii\helpers\Url::toRoute('create');
+$js = <<<JS
+    $(document).on('click', '#create', function(e){
+        $.get('{$requestUrl}',{},function(data){
+            $($('#create-department').children().children().children()[1]).html(data);
+        })
+    });
+JS;
+
+$this->registerJs($js);
+?>

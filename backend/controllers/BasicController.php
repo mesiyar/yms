@@ -30,7 +30,7 @@ class BasicController extends Controller
      * 成功弹出层
      * @param $message
      */
-    private function success($message)
+    protected function success($message= '操作成功')
     {
         Yii::$app->session->setFlash('success', $message);
     }
@@ -39,7 +39,7 @@ class BasicController extends Controller
      * 错误弹出层
      * @param $message
      */
-    private function error($message)
+    protected function error($message = '操作失败')
     {
         Yii::$app->session->setFlash('error', $message);
     }

@@ -11,14 +11,13 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Department;
 use backend\models\DepartmentSearch;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
  * DepartmentController implements the CRUD actions for Department model.
  */
-class DepartmentController extends Controller
+class DepartmentController extends BasicController
 {
     /**
      * @inheritdoc
@@ -51,6 +50,7 @@ class DepartmentController extends Controller
     }
 
     /**
+     * 展示本部门下都所有员工
      * Displays a single Department model.
      * @param integer $id
      * @return mixed
@@ -72,9 +72,10 @@ class DepartmentController extends Controller
         $model = new Department();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            $this->success('添加成功');
+            return $this->redirect(['index']);
         } else {
-            return $this->render('create', [
+            return $this->renderAjax('create', [
                 'model' => $model,
             ]);
         }

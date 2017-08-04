@@ -38,7 +38,7 @@ class SiteConfig extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'logo', 'desc', 'keywords', 'pageSize', 'theme'], 'required'],
+            [['title', 'desc', 'keywords', 'pageSize', 'theme'], 'required'],
             [['pageSize', 'id'], 'integer'],
             ['logo', 'image', 'extensions' => 'png, jpg',],
             [['title', 'desc', 'keywords', 'theme'], 'string', 'max' => 255],
