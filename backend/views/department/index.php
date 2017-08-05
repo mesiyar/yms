@@ -41,6 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'dName.name',
                 'label' => '上级部门',
+                'value' => function($model) {
+                    return empty($model->dName->name) ? '顶级部门' : $model->dName->name;
+                }
             ],
             [
                 'attribute' => 'createTime',
@@ -60,7 +63,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => '操作',
-                'template' => '{update}  {delete}'
+                'template' => '{update}  {delete}',
+
             ],
         ],
     ]); ?>
@@ -84,6 +88,7 @@ $js = <<<JS
             $($('#create-department').children().children().children()[1]).html(data);
         })
     });
+
 JS;
 
 $this->registerJs($js);

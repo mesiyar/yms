@@ -1,23 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: luo
- * Date: 17-7-20
- * Time: 下午2:21
- */
 
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Department;
-use backend\models\DepartmentSearch;
+use backend\models\Article;
+use backend\models\ArticleSearch;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * DepartmentController implements the CRUD actions for Department model.
+ * ArticleController implements the CRUD actions for Article model.
  */
-class DepartmentController extends BasicController
+class ArticleController extends BasicController
 {
     /**
      * @inheritdoc
@@ -35,12 +30,12 @@ class DepartmentController extends BasicController
     }
 
     /**
-     * Lists all Department models.
+     * Lists all Article models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new DepartmentSearch();
+        $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -50,8 +45,7 @@ class DepartmentController extends BasicController
     }
 
     /**
-     * 展示本部门下都所有员工
-     * Displays a single Department model.
+     * Displays a single Article model.
      * @param integer $id
      * @return mixed
      */
@@ -63,26 +57,25 @@ class DepartmentController extends BasicController
     }
 
     /**
-     * Creates a new Department model.
+     * Creates a new Article model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Department();
+        $model = new Article();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->success('添加成功');
-            return $this->redirect(['index']);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->renderAjax('create', [
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }
     }
 
     /**
-     * Updates an existing Department model.
+     * Updates an existing Article model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -101,7 +94,7 @@ class DepartmentController extends BasicController
     }
 
     /**
-     * Deletes an existing Department model.
+     * Deletes an existing Article model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -109,24 +102,23 @@ class DepartmentController extends BasicController
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-        Department::deleteAll(['pid' => $id]);
+
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Department model based on its primary key value.
+     * Finds the Article model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Department the loaded model
+     * @return Article the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Department::findOne($id)) !== null) {
+        if (($model = Article::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
-
 }

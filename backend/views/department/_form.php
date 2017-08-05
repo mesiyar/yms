@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pid')->dropDownList($model::map(), ['prompt' => '请选择上级部门']) ?>
+    <?= $form->field($model, 'pid')->dropDownList($model::getCategory(), ['prompt' => '不选默认是最高部门']) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? '添加' : '更新', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
