@@ -109,7 +109,7 @@ class DepartmentController extends BasicController
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
-
+        Department::deleteAll(['pid' => $id]);
         return $this->redirect(['index']);
     }
 
@@ -128,4 +128,5 @@ class DepartmentController extends BasicController
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
 }

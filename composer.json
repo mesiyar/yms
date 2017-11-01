@@ -26,6 +26,10 @@
         "deesoft/yii2-angular": "~1.0",
         "mdmsoft/yii2-admin": "~2.0",
         "kartik-v/yii2-mpdf": "dev-master",
+        "kartik-v/yii2-dialog": "@dev",
+        "kartik-v/yii2-widget-datepicker": "@dev",
+        "kartik-v/yii2-widget-datetimepicker": "*",
+
         "yiidoc/yii2-redactor": "*"
     },
     "require-dev": {
