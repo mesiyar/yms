@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'status',
                 'format' => 'raw',
                 'value' => function($model) {
-                    return $model->status ? Html::button('正常',['class' => 'btn btn-success btn-sm']) : Html::button('禁用',['class' => 'btn btn-danger btn-sm']);
+                    return $model->status ? Html::button('正常',['class' => 'btn btn-success btn-xs']) : Html::button('禁用',['class' => 'btn btn-danger btn-xs']);
                 },
                 'filter' => [
                     0 => '禁用',

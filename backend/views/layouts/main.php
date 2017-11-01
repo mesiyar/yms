@@ -4,7 +4,7 @@ use yii\helpers\Html;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-
+$theme = isset($_COOKIE['theme-style']) ? $_COOKIE['theme-style'] : 'skin-blue';
 if (Yii::$app->controller->action->id === 'login') { 
 /**
  * Do not use this code in your template. Remove it. 
@@ -38,7 +38,7 @@ if (Yii::$app->controller->action->id === 'login') {
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition <?= Yii::$app->session->get('system')['theme']?> sidebar-mini" id="imbody">
+    <body class="hold-transition <?= $theme ?> sidebar-mini" id="imbody">
     <?php $this->beginBody() ?>
     <div class="wrapper">
 

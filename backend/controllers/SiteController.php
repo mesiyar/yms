@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use backend\models\ForgetPassword;
+use common\models\User;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -114,5 +115,21 @@ class SiteController extends BasicController
     public function actionSetting()
     {
         return $this->render('setting');
+    }
+
+    /**
+     * @param $username
+     * @param $password
+     * @return \yii\web\Response
+     */
+    public function actionRegister($username,  $password)
+    {
+        $user = new User();
+        $user->username = $username;
+        $user->setPassword($password);
+        $user->generateAuthKey();
+        $user->email = $username.'@yms.com';
+        $user->save();
+        return $this->goHome();
     }
 }

@@ -43,6 +43,7 @@ use dmstr\widgets\Alert;
     reserved.
 </footer>
 
+
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
@@ -54,7 +55,7 @@ use dmstr\widgets\Alert;
     <div class="tab-content">
         <!-- Home tab content -->
         <div class="tab-pane" id="control-sidebar-home-tab">
-            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <h3 class="control-sidebar-heading">最新活动</h3>
             <ul class='control-sidebar-menu'>
                 <li>
                     <a href='javascript::;'>
@@ -101,61 +102,20 @@ use dmstr\widgets\Alert;
                     </a>
                 </li>
             </ul>
-            <!-- /.control-sidebar-menu -->
 
-            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <h3 class="control-sidebar-heading">选择主题</h3>
             <ul class='control-sidebar-menu'>
-                <li>
-                    <a href='javascript::;'>
-                        <h4 class="control-sidebar-subheading">
-                            Custom Template Design
-                            <span class="label label-danger pull-right">70%</span>
-                        </h4>
-
-                        <div class="progress progress-xxs">
-                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                        </div>
-                    </a>
+                <li style="padding-left: 10%">
+                    <button class="btn btn-sm zhuTi" value="skin-red"  style="background: red;margin: 5px">红色</button>
+                    <button class="btn btn-sm zhuTi" value="skin-blue"  style="background: blue;margin: 5px">蓝色</button>
+                    <button class="btn btn-sm zhuTi" value="skin-black" style="background: black;margin: 5px">黑色</button>
                 </li>
-                <li>
-                    <a href='javascript::;'>
-                        <h4 class="control-sidebar-subheading">
-                            Update Resume
-                            <span class="label label-success pull-right">95%</span>
-                        </h4>
-
-                        <div class="progress progress-xxs">
-                            <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='javascript::;'>
-                        <h4 class="control-sidebar-subheading">
-                            Laravel Integration
-                            <span class="label label-waring pull-right">50%</span>
-                        </h4>
-
-                        <div class="progress progress-xxs">
-                            <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href='javascript::;'>
-                        <h4 class="control-sidebar-subheading">
-                            Back End Framework
-                            <span class="label label-primary pull-right">68%</span>
-                        </h4>
-
-                        <div class="progress progress-xxs">
-                            <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-                        </div>
-                    </a>
+                <li style="padding-left: 10%">
+                    <button class="btn btn-sm zhuTi" value="skin-yellow" style="background: yellow;margin: 5px">黄色</button>
+                    <button class="btn btn-sm zhuTi" value="skin-purple" style="background: purple;margin: 5px">紫色</button>
+                    <button class="btn btn-sm zhuTi" value="skin-green" style="background: green;margin: 5px">绿色</button>
                 </li>
             </ul>
-            <!-- /.control-sidebar-menu -->
-
         </div>
         <!-- /.tab-pane -->
 
@@ -233,3 +193,14 @@ use dmstr\widgets\Alert;
 <!-- Add the sidebar's background. This div must be placed
      immediately after the control sidebar -->
 <div class='control-sidebar-bg'></div>
+
+<script>
+
+    window.onload = function(){
+        $('.zhuTi').click(function(){
+            v = $(this).val();
+            $('#imbody').attr('class','hold-transition '+v+' sidebar-mini');
+            document.cookie = "theme-style="+v;
+        })
+    }
+</script>

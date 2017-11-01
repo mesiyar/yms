@@ -1,4 +1,5 @@
 <?php
 return [
-    'adminEmail' => 'admin@example.com',
+    //管理员邮箱地址
+    'adminEmail' => '1021683438@qq.com',
 ];

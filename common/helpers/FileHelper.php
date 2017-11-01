@@ -45,7 +45,8 @@ class FileHelper extends \yii\helpers\FileHelper
      * @param array $options
      * @throws ErrorException
      */
-    public static function clearDirectory($dir, $options = []) {
+    public static function clearDirectory($dir, $options = [])
+    {
         if (!is_dir($dir)) {
             return;
         }

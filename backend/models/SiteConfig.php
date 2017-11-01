@@ -29,7 +29,7 @@ class SiteConfig extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'site_config';
+        return '{{%site_config}}';
     }
 
     /**
@@ -59,6 +59,5 @@ class SiteConfig extends \yii\db\ActiveRecord
             'theme' => '后台主题',
         ];
     }
-
 
 }
